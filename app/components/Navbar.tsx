@@ -2,8 +2,13 @@ import Link from "next/link";
 import { NavbarLinks } from "./NavbarLinks";
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "./MobileMenu";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { UserNav } from "./UserNav";
 
-export function Navbar() {
+export async function Navbar() {
+    const {getUser} = getKindeServerSession();
+    const user = await getUser();
     return (
         <nav className="relative max-w-7xl w-full flex md:grid md:grid-cols-12 items-center md:px-8 mx-auto px-4 py-7">
             <div className="md:col-span-3">
@@ -13,8 +18,19 @@ export function Navbar() {
             </div>
             <NavbarLinks />
             <div className="flex item-center gap-x-2 ms-auto md:col-span-3">
-                <Button >Sign-in</Button>
-                <Button variant="secondary">Sign-up</Button>
+                
+                {user ? (
+                    <UserNav />
+                ) : (
+                    <div className="flex items-center gap-x-2">
+                        <Button asChild>
+                            <LoginLink>Sign-in</LoginLink>
+                        </Button>
+                        <Button variant="secondary" asChild>
+                            <RegisterLink>Sign-up</RegisterLink>
+                        </Button>
+                    </div>
+                )}  
 
                 <div className="md:hidden">
                     <MobileMenu />
