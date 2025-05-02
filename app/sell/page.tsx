@@ -5,10 +5,11 @@ import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { SelectCategory } from "../components/SelectCategory";
 import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "../components/Editor";
 
 export default function SellRoute() {
     return (
-     <section className="max-w-7xl mx-auto px-4 md:px-8">
+     <section className="max-w-7xl mx-auto px-4 md:px-8 mb-16">
         
         <Card>
             <form>
@@ -34,8 +35,13 @@ export default function SellRoute() {
                     </div>
 
                     <div className="flex flex-col gap-y-4">
-                        <Label>Descrição</Label>
+                        <Label>Descrição Resuminda</Label>
                         <Textarea placeholder="Descreva brevemente seu produto aqui..." />
+                    </div>
+                    
+                    <div className="flex flex-col gap-y-4">
+                        <Label>Descrição</Label>
+                        <TipTapEditor />
                     </div>
                 </CardContent>
             </form>
