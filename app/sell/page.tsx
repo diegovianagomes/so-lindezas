@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
@@ -6,6 +6,8 @@ import { Separator } from "@/components/ui/separator";
 import { SelectCategory } from "../components/SelectCategory";
 import { Textarea } from "@/components/ui/textarea";
 import { TipTapEditor } from "../components/Editor";
+import { UploadDropzone } from "../lib/uploadthing";
+import { Button } from "@/components/ui/button";
 
 export default function SellRoute() {
     return (
@@ -43,7 +45,21 @@ export default function SellRoute() {
                         <Label>Descrição</Label>
                         <TipTapEditor />
                     </div>
+
+                    <div className="flex flex-col gap-y-4">
+                        <Label>Imagens do Produto</Label>
+                        <UploadDropzone endpoint="imageUploader"  />
+                    </div>
+
+                    <div className="flex flex-col gap-y-4">
+                        <Label>Arquivos</Label>
+                        <UploadDropzone endpoint="productFileUpload"  />
+                    </div>
                 </CardContent>
+
+                <CardFooter className="flex flex-col py-8">
+                    <Button>Cadastrar o produto</Button>
+                </CardFooter>
             </form>
         </Card>
 
